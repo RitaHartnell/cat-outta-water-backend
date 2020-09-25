@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
     def index
         @users = User.all
-        render json: @users.to_json( :only => [:id, :username, :avatar, :bio] )
+        render json: @users.to_json( :only => [:id, :username, :avatar, :bio] ), include: :comments
     end
 
     def profile
