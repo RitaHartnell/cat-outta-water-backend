@@ -1,9 +1,14 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index]
+    skip_before_action :authorized, only: [:create, :index, :show]
 
     def index
         @users = User.all
-        render json: @users.to_json( :only => [:id, :username, :avatar, :bio] ), include: :comments
+        render json: @users.to_json( :only => [:id, :username, :avatar, :bio] )
+    end
+
+    def show
+        @user = User.find(params[:id])
+        render json: @user.to_json( :only => [:id, :username, :avatar] )
     end
 
     def profile
