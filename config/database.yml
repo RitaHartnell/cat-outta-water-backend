@@ -47,3 +47,6 @@ test:
   database: cat-outta-water-backend_test
   pool: 5
   timeout: 5000
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
